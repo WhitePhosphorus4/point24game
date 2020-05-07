@@ -1,0 +1,1 @@
+void computer(int t, int num, string s, vector<int> &arr);

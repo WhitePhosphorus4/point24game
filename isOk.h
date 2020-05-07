@@ -1,0 +1,1 @@
+bool isOk(string s);
