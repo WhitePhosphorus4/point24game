@@ -4,7 +4,7 @@
 using namespace std;
 int tag[3];   //存放3个运算符的优先级，1表示+-，2表示* /
 /* 根据tag标记的优先级判断是否加括号(从左向右计算),加输出加括号的表达式返回false，不加返回true*/
-bool isOk(string s)
+bool judge(string s)
 {
     int t = 0;
     int m, n;
@@ -26,15 +26,16 @@ bool isOk(string s)
     }
     return true;
 }
+
 /***********************对排列好的组合进行计算（递归）*******************************/
 /********表示当前有t个数参与计算  ；num为当前t个数的计算结果（值）；当前的表达式*****/
-void computer(int t, int num, string s, vector<int> &arr)
+void calculate(int t, int num, string s, vector<int> &arr)
 {
     if (t == 4)
     {
         //这里是既不需要加括号而且结果为24输出，
-        //当结果为24时，看从左到右计算是否满足计算优先级，利用is0k()函数加括号，在isOk函数中输出。
-        if (num == 24 && isOk(s))    
+        //当结果为24时，看从左到右计算是否满足计算优先级，利用judge()函数加括号，在judge函数中输出。
+        if (num == 24 && judge(s))    
         {
             cout << s << "    =24 " << endl;
         }
@@ -42,7 +43,7 @@ void computer(int t, int num, string s, vector<int> &arr)
     }
     if (t == 0)
     {
-        computer(t + 1, num + arr[t], to_string(arr[0]), arr);
+        calculate(t + 1, num + arr[t], to_string(arr[0]), arr);
         return;
     }
     for (int i = 0; i < 4; i++) 
@@ -50,14 +51,14 @@ void computer(int t, int num, string s, vector<int> &arr)
         if (i == 0) 
         {
             tag[t - 1] = 1;
-            computer(t + 1, num + arr[t], s + "+" + to_string(arr[t]),arr);
+            calculate(t + 1, num + arr[t], s + "+" + to_string(arr[t]),arr);
         }
         if (i == 1) 
         {
             tag[t - 1] = 1;
             if (num - arr[t] > 0)
             {
-                computer(t + 1, num - arr[t],s + "-" + to_string(arr[t]),arr);
+                calculate(t + 1, num - arr[t],s + "-" + to_string(arr[t]),arr);
             }
             //else     //如果return时返回上次一层t-1情况，for循环后面的情况没有考虑
             //{
@@ -67,14 +68,14 @@ void computer(int t, int num, string s, vector<int> &arr)
         if (i == 2) 
         {
             tag[t - 1] = 2;
-            computer(t + 1, num * arr[t], s + "*" + to_string(arr[t]),arr);
+            calculate(t + 1, num * arr[t], s + "*" + to_string(arr[t]),arr);
         }
         if (i == 3) 
         {
             tag[t - 1] = 2;
             if (num % arr[t] == 0) 
             {
-                computer(t + 1, num / arr[t], s + "/" + to_string(arr[t]),arr);
+                calculate(t + 1, num / arr[t], s + "/" + to_string(arr[t]),arr);
                     
             }
             //else 
@@ -89,7 +90,7 @@ void getOrder(size_t t, vector<int> &arr, int &cnt)       //进行排列组合,t
 {
     if (t >= arr.size())
     {
-        computer(0, 0, "",arr);                           //每一次排列好组合，对排列好的4个数用不同的方法计算。
+        calculate(0, 0, "",arr);                           //每一次排列好组合，对排列好的4个数用不同的方法计算。
         cnt++;
         return;
     }

@@ -9,7 +9,7 @@ void getOrder(size_t t, vector<int> &arr, int &cnt)       //进行排列组合,t
 {
     if (t >= arr.size())
     {
-        computer(0, 0, "",arr);                           //每一次排列好组合，对排列好的4个数用不同的方法计算。
+        calculate(0, 0, "",arr);                           //每一次排列好组合，对排列好的4个数用不同的方法计算。
         cnt++;
         return;
     }

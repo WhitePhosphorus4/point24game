@@ -1,0 +1,1 @@
+void calculate(int t, int num, string s, vector<int> &arr);

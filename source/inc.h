@@ -1,4 +1,5 @@
 extern int tag[3];
-void computer(int t, int num, string s, vector<int> &arr);
+void calculate(int t, int num, string s, vector<int> &arr);
 void getOrder(size_t t, vector<int> &arr, int &cnt)   ;
-bool isOk(string s);
+bool judge(string s);
+bool cha(int num)

@@ -5,7 +5,7 @@ using namespace std;
 
 #include"inc.h"
 
-bool isOk(string s)
+bool judge(string s)
 {
     int t = 0;
     int m, n;
@@ -26,4 +26,17 @@ bool isOk(string s)
         return false;
     }
     return true;
+}
+
+bool cha(int num)
+{
+    if(num >= 1 && num <= 13)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    return false;
 }
