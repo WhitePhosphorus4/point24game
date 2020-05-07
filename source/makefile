@@ -19,3 +19,6 @@ judge.o:judge.cpp inc.h
 
 clean:
 	rm *.o
+
+forget:
+	rm point24
